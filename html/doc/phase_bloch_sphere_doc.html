@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum State Visualization on Bloch Sphere | Visualización de Estados Cuánticos en la Esfera de Bloch</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="multilingual_common.css">
+    <script src="language_switcher.js"></script>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <div class="navigation">
+        <a href="../index.html">← Back to Index</a>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+    <h1>Quantum State Visualization on Bloch Sphere</h1>
+    
+    <div class="circuit-section">
+        <h2>The Bloch Sphere</h2>
+        <div class="math">
+            <h3>General Single Qubit State</h3>
+            <p>Any pure state can be written as:</p>
+            $$|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle$$
+            <p>Where:</p>
+            <ul>
+                <li>$\theta$: polar angle $(0 \leq \theta \leq \pi)$</li>
+                <li>$\phi$: azimuthal angle $(0 \leq \phi < 2\pi)$</li>
+            </ul>
+            <p>Common states on the Bloch sphere:</p>
+            $$|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad \text{(North pole)} \quad \theta = 0$$
+            $$|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \quad \text{(South pole)} \quad \theta = \pi$$
+            $$|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix} \quad \text{(}+x\text{ axis)} \quad \theta = \frac{\pi}{2}, \phi = 0$$
+            $$|-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix} \quad \text{(}-x\text{ axis)} \quad \theta = \frac{\pi}{2}, \phi = \pi$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Pauli Matrices</h2>
+        <div class="math">
+            <p>The generators of rotations:</p>
+            $$\sigma_x = X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \quad \text{(Flip)}$$
+            $$\sigma_y = Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \quad \text{(Phase Flip)}$$
+            $$\sigma_z = Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \quad \text{(Phase)}$$
+
+            <h3>Key Properties</h3>
+            $$\sigma_i^2 = I$$
+            $$[\sigma_i, \sigma_j] = 2i\epsilon_{ijk}\sigma_k$$
+            $$\{\sigma_i, \sigma_j\} = 2\delta_{ij}I$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>State Evolution</h2>
+        <img src="../../pictures/bloch_multivector.png" alt="Initial State Bloch Sphere">
+        <div class="math">
+            <h3>Rotation Operators</h3>
+            <p>General rotation by angle $\theta$ about axis $\vec{n} = (n_x,n_y,n_z)$:</p>
+            $$R(\theta,\vec{n}) = e^{-i\theta\vec{n}\cdot\vec{\sigma}/2} = \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}(\vec{n}\cdot\vec{\sigma})$$
+            
+            <p>Common rotations:</p>
+            $$R_x(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -i\sin\frac{\theta}{2} \\ -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}$$
+            $$R_y(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}$$
+            $$R_z(\theta) = \begin{pmatrix} e^{-i\theta/2} & 0 \\ 0 & e^{i\theta/2} \end{pmatrix}$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Quantum Operations</h2>
+        <div class="math">
+            <h3>Pure State Transformations</h3>
+            $$|\psi\rangle \rightarrow U|\psi\rangle \quad \text{where } U^\dagger U = I$$
+            
+            <h3>Mixed States and Density Matrix</h3>
+            $$\rho = \sum_i p_i|\psi_i\rangle\langle\psi_i|$$
+            
+            <p>Bloch sphere coordinates from density matrix:</p>
+            $$\vec{r} = \text{Tr}(\rho\vec{\sigma})$$
+            $$\rho = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})$$
+            
+            <h3>Evolution Under Decoherence</h3>
+            <p>The radius of the Bloch sphere contracts:</p>
+            $$|\vec{r}| \leq 1$$
+            <p>Pure states: $|\vec{r}| = 1$</p>
+            <p>Mixed states: $|\vec{r}| < 1$</p>
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Measurement Theory</h2>
+        <div class="math">
+            <h3>Projective Measurements</h3>
+            <p>Probability of measuring along axis $\vec{n}$:</p>
+            $$P(\pm|\psi) = \frac{1}{2}(1 \pm \vec{n}\cdot\vec{r})$$
+            
+            <h3>State Tomography</h3>
+            <p>Reconstructing $\rho$ from measurements:</p>
+            $$\rho = \frac{1}{2}(I + r_x\sigma_x + r_y\sigma_y + r_z\sigma_z)$$
+            <p>Where:</p>
+            $$r_i = \text{Tr}(\rho\sigma_i) = \langle\sigma_i\rangle$$
+        </div>
+    </div>
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+    <h1>Visualización de Estados Cuánticos en la Esfera de Bloch</h1>
+    
+    <div class="circuit-section">
+        <h2>La Esfera de Bloch</h2>
+        <div class="math">
+            <h3>Estado General de Un Qubit</h3>
+            <p>Cualquier estado puro se puede escribir como:</p>
+            $$|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle$$
+            <p>Donde:</p>
+            <ul>
+                <li>$\theta$: ángulo polar $(0 \leq \theta \leq \pi)$</li>
+                <li>$\phi$: ángulo azimutal $(0 \leq \phi < 2\pi)$</li>
+            </ul>
+            <p>Estados comunes en la esfera de Bloch:</p>
+            $$|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad \text{(Polo Norte)} \quad \theta = 0$$
+            $$|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix} \quad \text{(Polo Sur)} \quad \theta = \pi$$
+            $$|+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix} \quad \text{(eje }+x\text{)} \quad \theta = \frac{\pi}{2}, \phi = 0$$
+            $$|-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix} \quad \text{(eje }-x\text{)} \quad \theta = \frac{\pi}{2}, \phi = \pi$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Matrices de Pauli</h2>
+        <div class="math">
+            <p>Los generadores de rotaciones:</p>
+            $$\sigma_x = X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \quad \text{(Inversión)}$$
+            $$\sigma_y = Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \quad \text{(Inversión de Fase)}$$
+            $$\sigma_z = Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \quad \text{(Fase)}$$
+
+            <h3>Propiedades Principales</h3>
+            $$\sigma_i^2 = I$$
+            $$[\sigma_i, \sigma_j] = 2i\epsilon_{ijk}\sigma_k$$
+            $$\{\sigma_i, \sigma_j\} = 2\delta_{ij}I$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Evolución de Estados</h2>
+        <img src="../../pictures/bloch_multivector.png" alt="Esfera de Bloch Estado Inicial">
+        <div class="math">
+            <h3>Operadores de Rotación</h3>
+            <p>Rotación general por ángulo $\theta$ alrededor del eje $\vec{n} = (n_x,n_y,n_z)$:</p>
+            $$R(\theta,\vec{n}) = e^{-i\theta\vec{n}\cdot\vec{\sigma}/2} = \cos\frac{\theta}{2}I - i\sin\frac{\theta}{2}(\vec{n}\cdot\vec{\sigma})$$
+            
+            <p>Rotaciones comunes:</p>
+            $$R_x(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -i\sin\frac{\theta}{2} \\ -i\sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}$$
+            $$R_y(\theta) = \begin{pmatrix} \cos\frac{\theta}{2} & -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} & \cos\frac{\theta}{2} \end{pmatrix}$$
+            $$R_z(\theta) = \begin{pmatrix} e^{-i\theta/2} & 0 \\ 0 & e^{i\theta/2} \end{pmatrix}$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Operaciones Cuánticas</h2>
+        <div class="math">
+            <h3>Transformaciones de Estados Puros</h3>
+            $$|\psi\rangle \rightarrow U|\psi\rangle \quad \text{donde } U^\dagger U = I$$
+            
+            <h3>Estados Mixtos y Matriz de Densidad</h3>
+            $$\rho = \sum_i p_i|\psi_i\rangle\langle\psi_i|$$
+            
+            <p>Coordenadas en la esfera de Bloch desde la matriz de densidad:</p>
+            $$\vec{r} = \text{Tr}(\rho\vec{\sigma})$$
+            $$\rho = \frac{1}{2}(I + \vec{r}\cdot\vec{\sigma})$$
+            
+            <h3>Evolución Bajo Decoherencia</h3>
+            <p>El radio de la esfera de Bloch se contrae:</p>
+            $$|\vec{r}| \leq 1$$
+            <p>Estados puros: $|\vec{r}| = 1$</p>
+            <p>Estados mixtos: $|\vec{r}| < 1$</p>
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Teoría de la Medición</h2>
+        <div class="math">
+            <h3>Mediciones Proyectivas</h3>
+            <p>Probabilidad de medir a lo largo del eje $\vec{n}$:</p>
+            $$P(\pm|\psi) = \frac{1}{2}(1 \pm \vec{n}\cdot\vec{r})$$
+            
+            <h3>Tomografía de Estados</h3>
+            <p>Reconstrucción de $\rho$ a partir de mediciones:</p>
+            $$\rho = \frac{1}{2}(I + r_x\sigma_x + r_y\sigma_y + r_z\sigma_z)$$
+            <p>Donde:</p>
+            $$r_i = \text{Tr}(\rho\sigma_i) = \langle\sigma_i\rangle$$
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>

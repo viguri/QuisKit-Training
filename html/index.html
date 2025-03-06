@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Computing Documentation | Documentación de Computación Cuántica</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['braket', 'physics']}
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* Original styles unchanged */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .content-section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            background-color: white;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .description {
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .math {
+            background-color: #fff9e6;
+            padding: 15px;
+            border-left: 4px solid #ffd700;
+            margin: 15px 0;
+        }
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .language-btn {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .language-btn.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+        [lang] {
+            display: none;
+        }
+        [lang].active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+        <h1>Quantum Computing Implementation Guide</h1>
+        
+        <div class="content-section">
+            <h2>Key Concepts</h2>
+            <!-- Original key concepts math section unchanged -->
+            <div class="math">
+                <h3>Quantum States</h3>
+                <p>Single Qubit:</p>
+                $$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1$$
+                
+                <p>Bell State:</p>
+                $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+                
+                <p>Key Quantum Gates:</p>
+                $$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \quad \text{(Hadamard)}$$
+                
+                $$CNOT = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$$
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Implementation Examples</h2>
+            
+            <div class="card">
+                <h3><a href="doc/first_circuit_simulator_doc.html">Local Bell State Simulation</a></h3>
+                <div class="description">
+                    <p>Implementation of a Bell state using Qiskit's local simulator (Aer).</p>
+                    <div class="math">
+                        $$|\psi\rangle: |00\rangle \xrightarrow{H} \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><a href="doc/first_circuit_provider_doc.html">IBM Quantum Implementation</a></h3>
+                <div class="description">
+                    <p>Cloud-based quantum computation with error mitigation.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><a href="doc/bernstein_vazirani_doc.html">Bernstein-Vazirani Algorithm (Interactive)</a></h3>
+                <div class="description">
+                    <p>Interactive demonstration of quantum advantage in finding hidden binary strings.</p>
+                    <div class="math">
+                        $$|s\rangle = H^{\otimes n}(CNOT \text{ pattern})H^{\otimes n}|0\rangle^{\otimes n}$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><a href="doc/teleportation_doc.html">Quantum Teleportation Protocol</a></h3>
+                <div class="description">
+                    <p>Complete mathematical analysis of quantum teleportation:</p>
+                    <div class="math">
+                        $$|\psi\rangle_{initial} = |1\rangle_0 \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)_{12}$$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Additional Resources</h2>
+            <ul>
+                <li><a href="doc/quantum_notation_doc.html">Quantum Computing Notation Guide</a></li>
+                <li><a href="doc/bernstein_vazirani_doc.html">Bernstein-Vazirani Algorithm (Interactive Demo)</a></li>
+                <li><a href="https://qiskit.org/documentation/" target="_blank">Qiskit Documentation</a></li>
+                <li><a href="https://quantum-computing.ibm.com/" target="_blank">IBM Quantum</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+        <h1>Guía de Implementación de Computación Cuántica</h1>
+        
+        <div class="content-section">
+            <h2>Conceptos Clave</h2>
+            <div class="math">
+                <h3>Estados Cuánticos</h3>
+                <p>Qubit Individual:</p>
+                $$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle, \quad |\alpha|^2 + |\beta|^2 = 1$$
+                
+                <p>Estado Bell:</p>
+                $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+                
+                <p>Puertas Cuánticas Principales:</p>
+                $$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \quad \text{(Hadamard)}$$
+                
+                $$CNOT = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0 \end{pmatrix}$$
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Ejemplos de Implementación</h2>
+            
+            <div class="card">
+                <h3><a href="doc/first_circuit_simulator_doc.html">Simulación Local de Estado Bell</a></h3>
+                <div class="description">
+                    <p>Implementación de un estado Bell usando el simulador local de Qiskit (Aer).</p>
+                    <div class="math">
+                        $$|\psi\rangle: |00\rangle \xrightarrow{H} \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><a href="doc/first_circuit_provider_doc.html">Implementación en IBM Quantum</a></h3>
+                <div class="description">
+                    <p>Computación cuántica en la nube con mitigación de errores.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><a href="doc/bernstein_vazirani_doc.html">Algoritmo de Bernstein-Vazirani (Interactivo)</a></h3>
+                <div class="description">
+                    <p>Demostración interactiva de la ventaja cuántica en la búsqueda de cadenas binarias ocultas.</p>
+                    <div class="math">
+                        $$|s\rangle = H^{\otimes n}(CNOT \text{ patrón})H^{\otimes n}|0\rangle^{\otimes n}$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><a href="doc/teleportation_doc.html">Protocolo de Teleportación Cuántica</a></h3>
+                <div class="description">
+                    <p>Análisis matemático completo de la teleportación cuántica:</p>
+                    <div class="math">
+                        $$|\psi\rangle_{inicial} = |1\rangle_0 \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)_{12}$$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Recursos Adicionales</h2>
+            <ul>
+                <li><a href="doc/quantum_notation_doc.html">Guía de Notación Cuántica</a></li>
+                <li><a href="doc/bernstein_vazirani_doc.html">Algoritmo de Bernstein-Vazirani (Demo Interactiva)</a></li>
+                <li><a href="https://qiskit.org/documentation/" target="_blank">Documentación de Qiskit</a></li>
+                <li><a href="https://quantum-computing.ibm.com/" target="_blank">IBM Quantum</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageButtons = document.querySelectorAll('.language-btn');
+            const contents = document.querySelectorAll('[lang]');
+
+            languageButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    languageButtons.forEach(b => b.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    const lang = e.target.dataset.lang;
+                    e.target.classList.add('active');
+                    document.querySelector(`[lang="${lang}"]`).classList.add('active');
+                    document.documentElement.setAttribute('lang', lang);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
