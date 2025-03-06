@@ -1,73 +1,136 @@
-# Quantum Bell State Generator
+# Qiskit Training Project
 
-This project demonstrates the creation and measurement of a Bell state using IBM's Qiskit framework. It implements one of the fundamental quantum circuits that showcases quantum entanglement.
+## Project Purpose
+This project serves as a comprehensive quantum computing training resource using IBM's Qiskit framework. It implements various fundamental quantum algorithms and protocols, providing practical examples and visualizations to help understand quantum computing concepts.
 
 ## Overview
+The project includes implementations of several key quantum algorithms and protocols:
+- Deutsch's Algorithm
+- Bernstein-Vazirani Algorithm
+- Bell State Generation
+- Quantum Teleportation
+- Superdense Coding
+- Shor's Algorithm
+- Phase Visualization on Bloch Sphere
+- Quantum Search Algorithms
 
-The quantum circuit creates a Bell state (specifically the |Φ+⟩ state) using two qubits. This state is a fundamental example of quantum entanglement, where the quantum states of particles are connected in such a way that the quantum state of each particle cannot be described independently.
+Each implementation includes detailed visualizations and step-by-step explanations to aid in understanding the quantum mechanics principles involved.
+
+## Features
+- **Multiple Quantum Algorithms**: Complete implementations of fundamental quantum algorithms
+- **Enhanced Visualization**: 
+  - Circuit diagrams
+  - State evolution visualization
+  - Measurement histograms
+  - Bloch sphere representations
+- **Hardware Integration**: Support for running circuits on IBM Quantum hardware
+- **Detailed Documentation**: Each algorithm includes comprehensive documentation and explanations
+- **Educational Tools**: Step-by-step visualization of quantum state evolution
 
 ## Requirements
-
 - Python 3.7 or higher
 - Qiskit
 - Qiskit Aer (for simulation)
+- Qiskit IBM Provider (for hardware access)
 - Matplotlib (for visualization)
+- python-dotenv (for environment configuration)
 
 You can install the required packages using pip:
 
 ```bash
-pip install qiskit qiskit-aer matplotlib
+pip install qiskit qiskit-aer qiskit-ibm-provider matplotlib python-dotenv
 ```
 
-## Circuit Description
+## Installation Instructions
+1. Ensure you have Python 3.7 or higher installed on your system.
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/Qiskit-Training.git
+   ```
+3. Navigate to the project directory:
+   ```bash
+   cd Qiskit-Training
+   ```
+4. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Create a .env file in the root directory and add your IBM Quantum API key:
+   ```
+   IBMQ_KEY=your_api_key_here
+   ```
 
-The implemented quantum circuit:
+## Available Implementations
 
-1. Initializes two qubits in the |0⟩ state
-2. Applies a Hadamard gate (H) to the first qubit, creating a superposition
-3. Applies a CNOT gate using the first qubit as control and the second as target
-4. Measures both qubits
+### 1. Deutsch's Algorithm (`deutsch_algorithm.py`)
+- Implementation of the Deutsch-Jozsa algorithm
+- Includes circuit visualization and histogram results
+- Supports both simulator and real quantum hardware execution
 
-This sequence creates the Bell state:
-|Φ+⟩ = (|00⟩ + |11⟩)/√2
+### 2. Bernstein-Vazirani Algorithm (`bernstein_vazirani.py`)
+- Discovers a hidden binary string in a single query
+- Demonstrates quantum parallelism
+- Includes detailed visualization of circuit evolution
 
-## Running the Circuit
+### 3. Bell State Generation (`first_circuit.py`)
+- Creates and measures Bell states
+- Demonstrates quantum entanglement
+- Includes histograms of measurement results
 
-Execute the circuit by running:
+### 4. Quantum Teleportation (`teleportation.py`)
+- Implements quantum teleportation protocol
+- Visualizes state transfer process
+- Includes verification of successful teleportation
+
+### 5. Superdense Coding (`superdense_coding.py`)
+- Demonstrates quantum data transmission
+- Includes visualization of encoding and decoding steps
+- Shows practical application of quantum entanglement
+
+## Running the Examples
+Each implementation can be run independently. For example:
 
 ```bash
-python first_circuit.py
+python deutsch_algorithm.py
+python bernstein_vazirani.py
+python teleportation.py
 ```
 
-The script will:
-
-1. Create and display the quantum circuit
-2. Run the circuit on a quantum simulator
-3. Display measurement results
-4. Generate a histogram of the results
-5. Save the histogram as 'results_histogram.png'
+The scripts will:
+1. Create and display the quantum circuits
+2. Run simulations and/or hardware executions
+3. Generate visualizations in the `pictures/` directory
+4. Display measurement results and explanations
 
 ## Understanding the Results
+Each implementation generates various visualization files in the `pictures/` directory:
+- Circuit diagrams showing gate arrangements
+- State evolution visualizations
+- Measurement histograms
+- Bloch sphere representations (where applicable)
 
-The results demonstrate quantum entanglement through:
+These visualizations help in understanding:
+- Quantum circuit construction
+- State evolution through the algorithm
+- Final measurement results and their interpretation
 
-- Approximately equal probabilities of measuring |00⟩ and |11⟩ states
-- Absence of |01⟩ and |10⟩ states
-- Perfect correlation between the qubits' measurements
+## Usage Guidelines
+To use this project effectively:
+- Start with simple examples (Bell states, teleportation)
+- Progress to more complex algorithms (Deutsch, Bernstein-Vazirani)
+- Examine the generated visualizations to understand each step
+- Experiment with different input states and parameters
+- Compare simulator results with hardware execution results
 
-The histogram visualization ('results_histogram.png') shows the distribution of 1000 measurements, with bars of approximately equal height for the '00' and '11' states.
-
-## Applications
-
-This Bell state generator has applications in:
-
-- Quantum teleportation
-- Quantum cryptography
-- Quantum communication protocols
-- Testing quantum entanglement
+## Contribution Guidelines
+We welcome contributions to this project! To contribute:
+1. Fork the repository
+2. Create a new branch for your feature
+3. Add your implementation or improvement
+4. Ensure proper documentation and visualization
+5. Submit a pull request with a clear description of changes
 
 ## Further Reading
-
 - [IBM Qiskit Documentation](https://qiskit.org/documentation/)
-- [Bell States on Wikipedia](https://en.wikipedia.org/wiki/Bell_state)
-- [Quantum Entanglement](https://en.wikipedia.org/wiki/Quantum_entanglement)
+- [Quantum Computing Concepts](https://qiskit.org/textbook/what-is-quantum.html)
+- [IBM Quantum Experience](https://quantum-computing.ibm.com/)

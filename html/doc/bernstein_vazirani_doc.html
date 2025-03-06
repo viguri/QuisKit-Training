@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernstein-Vazirani Algorithm | Algoritmo de Bernstein-Vazirani</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="multilingual_common.css">
+    <script src="language_switcher.js"></script>
+    <style>
+        .input-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .binary-input {
+            font-family: monospace;
+            font-size: 1.2em;
+            padding: 5px;
+            letter-spacing: 2px;
+        }
+        .run-button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .run-button:hover {
+            background-color: #357abd;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-left: 4px solid #4a90e2;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+        <h1>Bernstein-Vazirani Algorithm</h1>
+
+        <div class="description">
+            <p>The Bernstein-Vazirani algorithm demonstrates quantum advantage by finding a hidden bit string in a single query, whereas classical algorithms require n queries for an n-bit string.</p>
+        </div>
+
+        <div class="math-block">
+            <h3>Mathematical Foundation</h3>
+            <p>For a secret string s = s₁s₂...sₙ, the algorithm:</p>
+            <ol>
+                <li>Prepares state: $|0\rangle^{\otimes n}|1\rangle$</li>
+                <li>Applies Hadamard: $H^{\otimes n}|0\rangle^{\otimes n} \otimes H|1\rangle$</li>
+                <li>Applies function: $f(x) = x \cdot s$ (inner product mod 2)</li>
+                <li>Measures after final Hadamard: $|s\rangle$</li>
+            </ol>
+        </div>
+
+        <div class="input-section">
+            <h2>Try the Algorithm</h2>
+            <p>Enter a binary string to use as the secret number:</p>
+            <input type="text" id="secret-en" class="binary-input" pattern="[01]+" maxlength="7" placeholder="1000101">
+            <button onclick="runAlgorithm('en')" class="run-button">Run Algorithm</button>
+            <div id="result-en" class="result"></div>
+        </div>
+
+        <div class="circuit-explanation">
+            <h2>Circuit Implementation</h2>
+            <img src="../../pictures/bernstein_vazirani/01_initial_state.png" alt="Initial State">
+            <p>1. Initial state preparation with Hadamard gates</p>
+            
+            <img src="../../pictures/bernstein_vazirani/02_after_cx.png" alt="After CNOT">
+            <p>2. CNOT gates encode the secret pattern</p>
+            
+            <img src="../../pictures/bernstein_vazirani/03_after_hadamard.png" alt="Final Circuit">
+            <p>3. Final Hadamard gates and measurement</p>
+        </div>
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+        <h1>Algoritmo de Bernstein-Vazirani</h1>
+
+        <div class="description">
+            <p>El algoritmo de Bernstein-Vazirani demuestra la ventaja cuántica al encontrar una cadena de bits oculta en una sola consulta, mientras que los algoritmos clásicos requieren n consultas para una cadena de n bits.</p>
+        </div>
+
+        <div class="math-block">
+            <h3>Fundamento Matemático</h3>
+            <p>Para una cadena secreta s = s₁s₂...sₙ, el algoritmo:</p>
+            <ol>
+                <li>Prepara el estado: $|0\rangle^{\otimes n}|1\rangle$</li>
+                <li>Aplica Hadamard: $H^{\otimes n}|0\rangle^{\otimes n} \otimes H|1\rangle$</li>
+                <li>Aplica la función: $f(x) = x \cdot s$ (producto interno mod 2)</li>
+                <li>Mide después del Hadamard final: $|s\rangle$</li>
+            </ol>
+        </div>
+
+        <div class="input-section">
+            <h2>Prueba el Algoritmo</h2>
+            <p>Ingresa una cadena binaria para usar como número secreto:</p>
+            <input type="text" id="secret-es" class="binary-input" pattern="[01]+" maxlength="7" placeholder="1000101">
+            <button onclick="runAlgorithm('es')" class="run-button">Ejecutar Algoritmo</button>
+            <div id="result-es" class="result"></div>
+        </div>
+
+        <div class="circuit-explanation">
+            <h2>Implementación del Circuito</h2>
+            <img src="../../pictures/bernstein_vazirani/01_initial_state.png" alt="Estado Inicial">
+            <p>1. Preparación del estado inicial con puertas Hadamard</p>
+            
+            <img src="../../pictures/bernstein_vazirani/02_after_cx.png" alt="Después de CNOT">
+            <p>2. Las puertas CNOT codifican el patrón secreto</p>
+            
+            <img src="../../pictures/bernstein_vazirani/03_after_hadamard.png" alt="Circuito Final">
+            <p>3. Puertas Hadamard finales y medición</p>
+        </div>
+    </div>
+
+    <script>
+        function isValidBinary(str) {
+            return /^[01]+$/.test(str) && str.length <= 7;
+        }
+
+        async function runAlgorithm(lang) {
+            const input = document.getElementById(`secret-${lang}`).value;
+            const resultDiv = document.getElementById(`result-${lang}`);
+            
+            if (!isValidBinary(input)) {
+                resultDiv.innerHTML = lang === 'en' 
+                    ? "Please enter a valid 7-bit binary number (e.g., 1000101)"
+                    : "Por favor, ingrese un número binario válido de 7 bits (ej: 1000101)";
+                return;
+            }
+
+            try {
+                const response = await fetch('/run_bernstein_vazirani', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ secret: input })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    const message = lang === 'en'
+                        ? `<h3>Results:</h3>
+                           <p>Secret number: ${input}</p>
+                           <p>Measured result: ${data.result}</p>
+                           <p>Success! The algorithm found the secret number in a single query.</p>`
+                        : `<h3>Resultados:</h3>
+                           <p>Número secreto: ${input}</p>
+                           <p>Resultado medido: ${data.result}</p>
+                           <p>¡Éxito! El algoritmo encontró el número secreto en una sola consulta.</p>`;
+                    resultDiv.innerHTML = message;
+                } else {
+                    resultDiv.innerHTML = lang === 'en'
+                        ? "Error running the algorithm. Please try again."
+                        : "Error al ejecutar el algoritmo. Por favor, inténtelo de nuevo.";
+                }
+            } catch (error) {
+                resultDiv.innerHTML = lang === 'en'
+                    ? "Error connecting to the server. Please try again."
+                    : "Error al conectar con el servidor. Por favor, inténtelo de nuevo.";
+            }
+        }
+    </script>
+</body>
+</html>
