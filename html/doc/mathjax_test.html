@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Circuit Mathematics</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['braket']}
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quantum Circuit Mathematics</h1>
+    
+    <div class="section">
+        <h2>Bell State</h2>
+        <p>The Bell state is represented as:</p>
+        $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+    </div>
+
+    <div class="section">
+        <h2>Hadamard Gate</h2>
+        <p>The Hadamard matrix:</p>
+        $$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+        
+        <p>Action on basis states:</p>
+        $$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$$
+        $$H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
+    </div>
+
+    <div class="section">
+        <h2>CNOT Gate</h2>
+        <p>The CNOT matrix:</p>
+        $$CNOT = \begin{pmatrix} 
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 0 & 1 & 0
+        \end{pmatrix}$$
+    </div>
+
+    <div class="section">
+        <h2>State Evolution</h2>
+        <p>The evolution of the quantum state:</p>
+        $$|00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+    </div>
+
+    <div class="section">
+        <h2>Measurement Probabilities</h2>
+        <p>The probability of measuring each basis state:</p>
+        $$P(00) = |\langle 00|\Phi^+\rangle|^2 = \frac{1}{2}$$
+        $$P(11) = |\langle 11|\Phi^+\rangle|^2 = \frac{1}{2}$$
+        $$P(01) = P(10) = 0$$
+    </div>
+</body>
+</html>

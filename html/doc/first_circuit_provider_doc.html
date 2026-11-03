@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM Quantum Provider Implementation | Implementación del Proveedor IBM Quantum</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="multilingual_common.css">
+    <script src="language_switcher.js"></script>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <div class="navigation">
+        <a href="../index.html">← Back to Index</a>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+    <h1>IBM Quantum Provider Implementation</h1>
+    
+    <div class="circuit-section">
+        <h2>Overview</h2>
+        <div class="description">
+            <p>This implementation uses IBM Quantum's Runtime services to execute quantum circuits with error mitigation.</p>
+        </div>
+        <div class="math">
+            <h3>Ideal State Evolution</h3>
+            $$|\psi_0\rangle = |00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Quantum Error Models</h2>
+        <div class="math">
+            <h3>1. Depolarizing Channel</h3>
+            <p>Models general quantum noise with probability p:</p>
+            $$\rho \rightarrow (1-p)\rho + p\frac{I}{2}$$
+            $$\text{Matrix form: } \begin{pmatrix} 1-p/2 & 0 \\ 0 & p/2 \end{pmatrix}$$
+
+            <h3>2. Amplitude Damping</h3>
+            <p>Models energy dissipation with decay parameter γ:</p>
+            $$E_0 = \begin{pmatrix} 1 & 0 \\ 0 & \sqrt{1-\gamma} \end{pmatrix}, \quad
+            E_1 = \begin{pmatrix} 0 & \sqrt{\gamma} \\ 0 & 0 \end{pmatrix}$$
+            $$\rho \rightarrow E_0\rho E_0^\dagger + E_1\rho E_1^\dagger$$
+
+            <h3>3. Phase Damping</h3>
+            <p>Models decoherence with parameter λ:</p>
+            $$K_0 = \begin{pmatrix} 1 & 0 \\ 0 & \sqrt{1-\lambda} \end{pmatrix}, \quad
+            K_1 = \begin{pmatrix} 0 & 0 \\ 0 & \sqrt{\lambda} \end{pmatrix}$$
+            $$\rho \rightarrow K_0\rho K_0^\dagger + K_1\rho K_1^\dagger$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Error Mitigation</h2>
+        <div class="math">
+            <h3>Readout Error Matrix</h3>
+            $$A = \begin{pmatrix} 1-\epsilon_0 & \delta_1 \\ \epsilon_0 & 1-\delta_1 \end{pmatrix}$$
+            <p>Where:</p>
+            <ul>
+                <li>$\epsilon_0$: Probability of misidentifying $|0\rangle$ as 1</li>
+                <li>$\delta_1$: Probability of misidentifying $|1\rangle$ as 0</li>
+            </ul>
+
+            <h3>Error Correction</h3>
+            <p>The corrected probabilities are obtained by:</p>
+            $$\begin{pmatrix} p_0' \\ p_1' \end{pmatrix} = A^{-1}\begin{pmatrix} p_0 \\ p_1 \end{pmatrix}$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Results Analysis</h2>
+        <img src="../../pictures/results_histogram.png" alt="Results Histogram">
+        <div class="math">
+            <h3>Statistical Analysis</h3>
+            <p>For N shots with error rate ε:</p>
+            $$P(n_0|N) = \binom{N}{n_0}(1-\epsilon)^{n_0}\epsilon^{N-n_0}$$
+            
+            <h3>Fidelity Estimation</h3>
+            <p>State fidelity with respect to ideal Bell state:</p>
+            $$F = \langle\Phi^+|\rho|\Phi^+\rangle = \text{Tr}(\rho|\Phi^+\rangle\langle\Phi^+|)$$
+            <p>With noise, the density matrix becomes:</p>
+            $$\rho = (1-p)|\Phi^+\rangle\langle\Phi^+| + \frac{p}{4}I_4$$
+            <p>Quantum Process Fidelity:</p>
+            $$F_{\text{process}} = \frac{F_{\text{avg}} + 1}{2}$$
+            <p>Where $F_{\text{avg}}$ is the average state fidelity over all input states.</p>
+        </div>
+    </div>
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+    <h1>Implementación del Proveedor IBM Quantum</h1>
+    
+    <div class="circuit-section">
+        <h2>Descripción General</h2>
+        <div class="description">
+            <p>Esta implementación utiliza los servicios Runtime de IBM Quantum para ejecutar circuitos cuánticos con mitigación de errores.</p>
+        </div>
+        <div class="math">
+            <h3>Evolución del Estado Ideal</h3>
+            $$|\psi_0\rangle = |00\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Modelos de Error Cuántico</h2>
+        <div class="math">
+            <h3>1. Canal de Despolarización</h3>
+            <p>Modela el ruido cuántico general con probabilidad p:</p>
+            $$\rho \rightarrow (1-p)\rho + p\frac{I}{2}$$
+            $$\text{Forma matricial: } \begin{pmatrix} 1-p/2 & 0 \\ 0 & p/2 \end{pmatrix}$$
+
+            <h3>2. Amortiguamiento de Amplitud</h3>
+            <p>Modela la disipación de energía con parámetro de decaimiento γ:</p>
+            $$E_0 = \begin{pmatrix} 1 & 0 \\ 0 & \sqrt{1-\gamma} \end{pmatrix}, \quad
+            E_1 = \begin{pmatrix} 0 & \sqrt{\gamma} \\ 0 & 0 \end{pmatrix}$$
+            $$\rho \rightarrow E_0\rho E_0^\dagger + E_1\rho E_1^\dagger$$
+
+            <h3>3. Amortiguamiento de Fase</h3>
+            <p>Modela la decoherencia con parámetro λ:</p>
+            $$K_0 = \begin{pmatrix} 1 & 0 \\ 0 & \sqrt{1-\lambda} \end{pmatrix}, \quad
+            K_1 = \begin{pmatrix} 0 & 0 \\ 0 & \sqrt{\lambda} \end{pmatrix}$$
+            $$\rho \rightarrow K_0\rho K_0^\dagger + K_1\rho K_1^\dagger$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Mitigación de Errores</h2>
+        <div class="math">
+            <h3>Matriz de Error de Lectura</h3>
+            $$A = \begin{pmatrix} 1-\epsilon_0 & \delta_1 \\ \epsilon_0 & 1-\delta_1 \end{pmatrix}$$
+            <p>Donde:</p>
+            <ul>
+                <li>$\epsilon_0$: Probabilidad de identificar erróneamente $|0\rangle$ como 1</li>
+                <li>$\delta_1$: Probabilidad de identificar erróneamente $|1\rangle$ como 0</li>
+            </ul>
+
+            <h3>Corrección de Errores</h3>
+            <p>Las probabilidades corregidas se obtienen mediante:</p>
+            $$\begin{pmatrix} p_0' \\ p_1' \end{pmatrix} = A^{-1}\begin{pmatrix} p_0 \\ p_1 \end{pmatrix}$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>Análisis de Resultados</h2>
+        <img src="../../pictures/results_histogram.png" alt="Histograma de Resultados">
+        <div class="math">
+            <h3>Análisis Estadístico</h3>
+            <p>Para N disparos con tasa de error ε:</p>
+            $$P(n_0|N) = \binom{N}{n_0}(1-\epsilon)^{n_0}\epsilon^{N-n_0}$$
+            
+            <h3>Estimación de Fidelidad</h3>
+            <p>Fidelidad del estado respecto al estado Bell ideal:</p>
+            $$F = \langle\Phi^+|\rho|\Phi^+\rangle = \text{Tr}(\rho|\Phi^+\rangle\langle\Phi^+|)$$
+            <p>Con ruido, la matriz de densidad se convierte en:</p>
+            $$\rho = (1-p)|\Phi^+\rangle\langle\Phi^+| + \frac{p}{4}I_4$$
+            <p>Fidelidad del Proceso Cuántico:</p>
+            $$F_{\text{process}} = \frac{F_{\text{avg}} + 1}{2}$$
+            <p>Donde $F_{\text{avg}}$ es la fidelidad promedio del estado sobre todos los estados de entrada.</p>
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>

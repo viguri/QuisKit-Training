@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Computing Notation Guide | Guía de Notación Cuántica</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="multilingual_common.css">
+    <script src="language_switcher.js"></script>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+    <h1>Quantum Computing Mathematical Notation Guide</h1>
+
+    <h2>Dirac Notation (Bra-Ket)</h2>
+    <div class="note">
+        <p>Dirac notation is the standard notation for describing quantum states in quantum mechanics and quantum computing.</p>
+    </div>
+
+    <h3>Key Elements</h3>
+    <ul>
+        <li><strong>Ket notation \(|\psi\rangle\)</strong>: Represents a quantum state vector
+            <ul>
+                <li>\(|0\rangle\): Represents the computational basis state 0</li>
+                <li>\(|1\rangle\): Represents the computational basis state 1</li>
+            </ul>
+        </li>
+        <li><strong>Bra notation \(\langle\psi|\)</strong>: Represents the conjugate transpose of a ket
+            <ul>
+                <li>\(\langle0|\): Conjugate transpose of \(|0\rangle\)</li>
+                <li>\(\langle1|\): Conjugate transpose of \(|1\rangle\)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Common Quantum States</h3>
+    <p>In our quantum circuits, we frequently use these states:</p>
+    <ul>
+        <li><strong>Basis States:</strong>
+            <ul>
+                <li>\(|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</li>
+                <li>\(|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</li>
+            </ul>
+        </li>
+        <li><strong>Superposition States:</strong>
+            <ul>
+                <li>\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</li>
+                <li>\(|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}\)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Quantum Gates in Matrix Form</h2>
+    <p>Common quantum gates used in our circuits:</p>
+    <ul>
+        <li><strong>Hadamard Gate (H):</strong>
+            \[H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\]
+            Creates superposition from basis states</li>
+        <li><strong>Pauli-X Gate (NOT):</strong>
+            \[X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\]
+            Flips the state of a qubit</li>
+        <li><strong>Phase Gate (S):</strong>
+            \[S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\]
+            Adds a phase of i to the \(|1\rangle\) state</li>
+    </ul>
+
+    <h2>Measurement</h2>
+    <p>Measurement in the computational basis is denoted as:</p>
+    <ul>
+        <li>For state \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\):</li>
+        <li>Probability of measuring \(|0\rangle\): \(|\alpha|^2\)</li>
+        <li>Probability of measuring \(|1\rangle\): \(|\beta|^2\)</li>
+        <li>Where \(|\alpha|^2 + |\beta|^2 = 1\)</li>
+    </ul>
+
+    <h2>Example in Our Code</h2>
+    <pre><code>
+# Creating basis state |0⟩
+zero_circuit = QuantumCircuit(1)  # |0⟩ by default
+
+# Creating basis state |1⟩
+one_circuit = QuantumCircuit(1)
+one_circuit.x(0)  # Applies X gate to create |1⟩
+
+# Creating superposition state |+⟩
+plus_circuit = QuantumCircuit(1)
+plus_circuit.h(0)  # Applies H gate to create |+⟩
+    </code></pre>
+
+    <div class="note">
+        <p><strong>Note:</strong> When we measure these states:</p>
+        <ul>
+            <li>|0⟩ gives 0 with 100% probability</li>
+            <li>|1⟩ gives 1 with 100% probability</li>
+            <li>|+⟩ gives 0 or 1 with 50% probability each</li>
+            <li>|-⟩ gives 0 or 1 with 50% probability each</li>
+        </ul>
+    </div>
+
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+    <h1>Guía de Notación Matemática en Computación Cuántica</h1>
+
+    <h2>Notación de Dirac (Bra-Ket)</h2>
+    <div class="note">
+        <p>La notación de Dirac es la notación estándar para describir estados cuánticos en mecánica cuántica y computación cuántica.</p>
+    </div>
+
+    <h3>Elementos Clave</h3>
+    <ul>
+        <li><strong>Notación Ket \(|\psi\rangle\)</strong>: Representa un vector de estado cuántico
+            <ul>
+                <li>\(|0\rangle\): Representa el estado base computacional 0</li>
+                <li>\(|1\rangle\): Representa el estado base computacional 1</li>
+            </ul>
+        </li>
+        <li><strong>Notación Bra \(\langle\psi|\)</strong>: Representa la transpuesta conjugada de un ket
+            <ul>
+                <li>\(\langle0|\): Transpuesta conjugada de \(|0\rangle\)</li>
+                <li>\(\langle1|\): Transpuesta conjugada de \(|1\rangle\)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Estados Cuánticos Comunes</h3>
+    <p>En nuestros circuitos cuánticos, frecuentemente usamos estos estados:</p>
+    <ul>
+        <li><strong>Estados Base:</strong>
+            <ul>
+                <li>\(|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}\)</li>
+                <li>\(|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</li>
+            </ul>
+        </li>
+        <li><strong>Estados de Superposición:</strong>
+            <ul>
+                <li>\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</li>
+                <li>\(|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}\)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Puertas Cuánticas en Forma Matricial</h2>
+    <p>Puertas cuánticas comunes usadas en nuestros circuitos:</p>
+    <ul>
+        <li><strong>Puerta Hadamard (H):</strong>
+            \[H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\]
+            Crea superposición desde estados base</li>
+        <li><strong>Puerta Pauli-X (NOT):</strong>
+            \[X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\]
+            Invierte el estado de un qubit</li>
+        <li><strong>Puerta de Fase (S):</strong>
+            \[S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}\]
+            Añade una fase de i al estado \(|1\rangle\)</li>
+    </ul>
+
+    <h2>Medición</h2>
+    <p>La medición en la base computacional se denota como:</p>
+    <ul>
+        <li>Para el estado \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\):</li>
+        <li>Probabilidad de medir \(|0\rangle\): \(|\alpha|^2\)</li>
+        <li>Probabilidad de medir \(|1\rangle\): \(|\beta|^2\)</li>
+        <li>Donde \(|\alpha|^2 + |\beta|^2 = 1\)</li>
+    </ul>
+
+    <h2>Ejemplo en Nuestro Código</h2>
+    <pre><code>
+# Crear estado base |0⟩
+zero_circuit = QuantumCircuit(1)  # |0⟩ por defecto
+
+# Crear estado base |1⟩
+one_circuit = QuantumCircuit(1)
+one_circuit.x(0)  # Aplica puerta X para crear |1⟩
+
+# Crear estado de superposición |+⟩
+plus_circuit = QuantumCircuit(1)
+plus_circuit.h(0)  # Aplica puerta H para crear |+⟩
+    </code></pre>
+
+    <div class="note">
+        <p><strong>Nota:</strong> Cuando medimos estos estados:</p>
+        <ul>
+            <li>|0⟩ da 0 con 100% de probabilidad</li>
+            <li>|1⟩ da 1 con 100% de probabilidad</li>
+            <li>|+⟩ da 0 o 1 con 50% de probabilidad cada uno</li>
+            <li>|-⟩ da 0 o 1 con 50% de probabilidad cada uno</li>
+        </ul>
+    </div>
+
+    </div>
+
+</body>
+</html>

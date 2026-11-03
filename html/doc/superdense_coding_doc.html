@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superdense Coding Protocol | Protocolo de Codificación Superdensa</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="multilingual_common.css">
+    <script src="language_switcher.js"></script>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <div class="navigation">
+        <a href="../index.html">← Back to Index</a>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+    <h1>Superdense Coding Protocol</h1>
+    
+    <div class="protocol-section">
+        <h2>Overview</h2>
+        <p>Superdense coding is a quantum communication protocol that allows Alice to send two classical bits to Bob using one qubit, provided they share an entangled pair.</p>
+        <div class="math">
+            <h3>Initial Bell State</h3>
+            $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Protocol Steps</h2>
+        <div class="math">
+            <h3>1. Bell Pair Creation</h3>
+            <p>Initial state:</p>
+            $$|0\rangle \otimes |0\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle$$
+            $$\xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+            <h3>2. Alice's Encoding</h3>
+            <p>Four possible messages encoded by Alice:</p>
+            <ul>
+                <li>00: $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ (No operation)</li>
+                <li>01: $|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$ (X gate)</li>
+                <li>10: $|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ (Z gate)</li>
+                <li>11: $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$ (ZX gates)</li>
+            </ul>
+
+            <h3>3. Bob's Decoding</h3>
+            <p>Bob's operations:</p>
+            $$|\psi\rangle \xrightarrow{CNOT} |\psi'\rangle \xrightarrow{H \otimes I} |message\rangle$$
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Security Analysis</h2>
+        <div class="security">
+            <h3>Eve's Limitations</h3>
+            <p>Eve cannot intercept the message because:</p>
+            <ol>
+                <li>No-cloning theorem prevents copying quantum states</li>
+                <li>Measurement disturbs the quantum state</li>
+                <li>Entanglement provides quantum security</li>
+            </ol>
+        </div>
+        <div class="math">
+            <h3>Mathematical Security</h3>
+            <p>If Eve tries to measure the qubit in transit:</p>
+            $$|\psi\rangle \xrightarrow{\text{measure}} \rho_{mixed} = \frac{1}{2}|0\rangle\langle 0| + \frac{1}{2}|1\rangle\langle 1|$$
+            <p>This destroys the entanglement and thus the message.</p>
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Implementation Results</h2>
+        <div class="math">
+            <h3>Circuit Implementation</h3>
+            <p>Bell pair creation:</p>
+            $$|00\rangle \xrightarrow{H_1} \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+        </div>
+        <div class="protocol-section">
+            <h3>Message: 00</h3>
+            <img src="../../pictures/superdense_coding_00.png" alt="Circuit for message 00">
+            <img src="../../pictures/histogram_superdense_00.png" alt="Histogram for message 00">
+        </div>
+        <div class="protocol-section">
+            <h3>Message: 11</h3>
+            <img src="../../pictures/superdense_coding_11.png" alt="Circuit for message 11">
+            <img src="../../pictures/histogram_superdense_11.png" alt="Histogram for message 11">
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Quantum Information Theory</h2>
+        <div class="math">
+            <h3>Information Content</h3>
+            <p>Classical channel capacity: 1 bit per qubit</p>
+            <p>Superdense coding capacity: 2 bits per qubit (with entanglement)</p>
+            <p>Holevo bound for single qubit without entanglement:</p>
+            $$\chi \leq 1 \text{ bit}$$
+            <p>With entanglement assistance:</p>
+            $$\chi \leq 2 \text{ bits}$$
+        </div>
+    </div>
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+    <h1>Protocolo de Codificación Superdensa</h1>
+    
+    <div class="protocol-section">
+        <h2>Descripción General</h2>
+        <p>La codificación superdensa es un protocolo de comunicación cuántica que permite a Alice enviar dos bits clásicos a Bob usando un qubit, siempre que compartan un par entrelazado.</p>
+        <div class="math">
+            <h3>Estado Bell Inicial</h3>
+            $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Pasos del Protocolo</h2>
+        <div class="math">
+            <h3>1. Creación del Par Bell</h3>
+            <p>Estado inicial:</p>
+            $$|0\rangle \otimes |0\rangle \xrightarrow{H \otimes I} \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle$$
+            $$\xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+
+            <h3>2. Codificación de Alice</h3>
+            <p>Cuatro posibles mensajes codificados por Alice:</p>
+            <ul>
+                <li>00: $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$ (Sin operación)</li>
+                <li>01: $|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)$ (Puerta X)</li>
+                <li>10: $|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)$ (Puerta Z)</li>
+                <li>11: $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)$ (Puertas ZX)</li>
+            </ul>
+
+            <h3>3. Decodificación de Bob</h3>
+            <p>Operaciones de Bob:</p>
+            $$|\psi\rangle \xrightarrow{CNOT} |\psi'\rangle \xrightarrow{H \otimes I} |message\rangle$$
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Análisis de Seguridad</h2>
+        <div class="security">
+            <h3>Limitaciones de Eve</h3>
+            <p>Eve no puede interceptar el mensaje porque:</p>
+            <ol>
+                <li>El teorema de no-clonación impide copiar estados cuánticos</li>
+                <li>La medición perturba el estado cuántico</li>
+                <li>El entrelazamiento proporciona seguridad cuántica</li>
+            </ol>
+        </div>
+        <div class="math">
+            <h3>Seguridad Matemática</h3>
+            <p>Si Eve intenta medir el qubit en tránsito:</p>
+            $$|\psi\rangle \xrightarrow{\text{measure}} \rho_{mixed} = \frac{1}{2}|0\rangle\langle 0| + \frac{1}{2}|1\rangle\langle 1|$$
+            <p>Esto destruye el entrelazamiento y por lo tanto el mensaje.</p>
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Resultados de Implementación</h2>
+        <div class="math">
+            <h3>Implementación del Circuito</h3>
+            <p>Creación del par Bell:</p>
+            $$|00\rangle \xrightarrow{H_1} \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) \xrightarrow{CNOT} \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+        </div>
+        <div class="protocol-section">
+            <h3>Mensaje: 00</h3>
+            <img src="../../pictures/superdense_coding_00.png" alt="Circuito para mensaje 00">
+            <img src="../../pictures/histogram_superdense_00.png" alt="Histograma para mensaje 00">
+        </div>
+        <div class="protocol-section">
+            <h3>Mensaje: 11</h3>
+            <img src="../../pictures/superdense_coding_11.png" alt="Circuito para mensaje 11">
+            <img src="../../pictures/histogram_superdense_11.png" alt="Histograma para mensaje 11">
+        </div>
+    </div>
+
+    <div class="protocol-section">
+        <h2>Teoría de Información Cuántica</h2>
+        <div class="math">
+            <h3>Contenido de Información</h3>
+            <p>Capacidad del canal clásico: 1 bit por qubit</p>
+            <p>Capacidad de codificación superdensa: 2 bits por qubit (con entrelazamiento)</p>
+            <p>Límite de Holevo para un qubit sin entrelazamiento:</p>
+            $$\chi \leq 1 \text{ bit}$$
+            <p>Con asistencia de entrelazamiento:</p>
+            $$\chi \leq 2 \text{ bits}$$
+        </div>
+    </div>
+    </div>
+</body>
+</html>

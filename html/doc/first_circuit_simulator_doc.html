@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bell State Circuit Simulator | Simulador de Circuito Estado Bell</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="multilingual_common.css">
+    <script src="language_switcher.js"></script>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <div class="navigation">
+        <a href="../index.html">← Back to Index</a>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+    <h1>Bell State Circuit Simulator</h1>
+    
+    <div class="circuit-section">
+        <h2>Overview</h2>
+        <div class="description">
+            <p>This script demonstrates the creation and simulation of a Bell state using Qiskit's local simulator (Aer).</p>
+        </div>
+        <div class="math">
+            <h3>Mathematical Foundation</h3>
+            <p>A Bell state (specifically, the Φ⁺ state) is represented as:</p>
+            $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+            <p>Where:</p>
+            <ul>
+                <li>$|00\rangle$ represents both qubits in the 0 state</li>
+                <li>$|11\rangle$ represents both qubits in the 1 state</li>
+                <li>$\frac{1}{\sqrt{2}}$ is the normalization factor</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>1. Hadamard Gate</h2>
+        <img src="../../pictures/hadamard_gate.png" alt="Hadamard Gate Circuit">
+        <div class="math">
+            <h3>Hadamard Operation</h3>
+            <p>The Hadamard gate (H) transforms the basis states:</p>
+            $$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+            <p>Actions on basis states:</p>
+            $$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$$
+            $$H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
+            <p>Applied to initial state $|0\rangle$, the system becomes:</p>
+            $$|\psi_1\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>2. CNOT Gate</h2>
+        <img src="../../pictures/CNOT_gate.png" alt="CNOT Gate Circuit">
+        <div class="math">
+            <h3>CNOT Operation</h3>
+            <p>The CNOT gate matrix:</p>
+            $$CNOT = \begin{pmatrix} 
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 1 \\
+            0 & 0 & 1 & 0
+            \end{pmatrix}$$
+            <p>Action on the state after Hadamard:</p>
+            $$CNOT(\frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)) = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+            <p>This creates the Bell state $|\Phi^+\rangle$, where measuring one qubit instantly determines the state of the other.</p>
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>3. Measurement</h2>
+        <img src="../../pictures/measurements.png" alt="Circuit with Measurements">
+        <div class="math">
+            <h3>Measurement Mathematics</h3>
+            <p>For the Bell state $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:</p>
+            <ul>
+                <li>$P(00) = |\langle 00|\Phi^+\rangle|^2 = \frac{1}{2}$</li>
+                <li>$P(11) = |\langle 11|\Phi^+\rangle|^2 = \frac{1}{2}$</li>
+                <li>$P(01) = P(10) = 0$</li>
+            </ul>
+            <p>Measurement operators in computational basis:</p>
+            $$P_0 = |0\rangle\langle 0| = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$$
+            $$P_1 = |1\rangle\langle 1| = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>4. Results</h2>
+        <img src="../../pictures/results_histogram.png" alt="Results Histogram">
+        <div class="math">
+            <h3>Statistical Analysis</h3>
+            <p>For $N$ shots, the expected distribution follows:</p>
+            <ul>
+                <li>$E(|00\rangle) = \frac{N}{2} \pm \sqrt{\frac{N}{4}}$</li>
+                <li>$E(|11\rangle) = \frac{N}{2} \pm \sqrt{\frac{N}{4}}$</li>
+                <li>$E(|01\rangle) = E(|10\rangle) = 0$</li>
+            </ul>
+            <p>The density matrix of the Bell state:</p>
+            $$\rho = |\Phi^+\rangle\langle\Phi^+| = \frac{1}{2}\begin{pmatrix} 
+            1 & 0 & 0 & 1 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            1 & 0 & 0 & 1
+            \end{pmatrix}$$
+        </div>
+    </div>
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+    <h1>Simulador de Circuito Estado Bell</h1>
+    
+    <div class="circuit-section">
+        <h2>Descripción General</h2>
+        <div class="description">
+            <p>Este script demuestra la creación y simulación de un estado Bell utilizando el simulador local de Qiskit (Aer).</p>
+        </div>
+        <div class="math">
+            <h3>Fundamento Matemático</h3>
+            <p>Un estado Bell (específicamente, el estado Φ⁺) se representa como:</p>
+            $$|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+            <p>Donde:</p>
+            <ul>
+                <li>$|00\rangle$ representa ambos qubits en el estado 0</li>
+                <li>$|11\rangle$ representa ambos qubits en el estado 1</li>
+                <li>$\frac{1}{\sqrt{2}}$ es el factor de normalización</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>1. Puerta Hadamard</h2>
+        <img src="../../pictures/hadamard_gate.png" alt="Circuito Puerta Hadamard">
+        <div class="math">
+            <h3>Operación Hadamard</h3>
+            <p>La puerta Hadamard (H) transforma los estados base:</p>
+            $$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$$
+            <p>Acciones sobre estados base:</p>
+            $$H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)$$
+            $$H|1\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)$$
+            <p>Aplicado al estado inicial $|0\rangle$, el sistema se convierte en:</p>
+            $$|\psi_1\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes |0\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>2. Puerta CNOT</h2>
+        <img src="../../pictures/CNOT_gate.png" alt="Circuito Puerta CNOT">
+        <div class="math">
+            <h3>Operación CNOT</h3>
+            <p>La matriz de la puerta CNOT:</p>
+            $$CNOT = \begin{pmatrix} 
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 1 \\
+            0 & 0 & 1 & 0
+            \end{pmatrix}$$
+            <p>Acción sobre el estado después de Hadamard:</p>
+            $$CNOT(\frac{1}{\sqrt{2}}(|00\rangle + |10\rangle)) = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+        </div>
+    </div>
+
+    <div class="circuit-section">
+        <h2>3. Medición</h2>
+        <img src="../../pictures/measurements.png" alt="Circuito con Mediciones">
+        <div class="math">
+            <h3>Resultados de Medición</h3>
+            <p>Para el estado Bell $|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$:</p>
+            <ul>
+                <li>$P(00) = |\langle 00|\Phi^+\rangle|^2 = \frac{1}{2}$</li>
+                <li>$P(11) = |\langle 11|\Phi^+\rangle|^2 = \frac{1}{2}$</li>
+                <li>$P(01) = P(10) = 0$</li>
+            </ul>
+            <p>Operadores de medición en la base computacional:</p>
+            $$P_0 = |0\rangle\langle 0| = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$$
+            $$P_1 = |1\rangle\langle 1| = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$$
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>

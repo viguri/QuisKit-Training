@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Teleportation Documentation | Documentación de Teleportación Cuántica</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="multilingual_common.css">
+    <script src="language_switcher.js"></script>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="language-btn active" data-lang="en">English</button>
+        <button class="language-btn" data-lang="es">Español</button>
+    </div>
+
+    <!-- English Content -->
+    <div lang="en" class="active">
+        <h1>Quantum Teleportation Protocol: Mathematical Foundation</h1>
+
+        <h2>Initial State Setup</h2>
+        <div class="math-block">
+            <h3>System Components</h3>
+            <p>The quantum teleportation circuit uses three qubits:</p>
+            <ul>
+                <li>Qubit 0: The message qubit (Alice's qubit to be teleported)</li>
+                <li>Qubit 1: Alice's entangled qubit</li>
+                <li>Qubit 2: Bob's entangled qubit</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>Step 1: Message Qubit Preparation</h3>
+            <p>In our implementation, we prepare the message qubit in state |1⟩:</p>
+            <div class="math-block">
+                <p>Initial state of qubit 0:</p>
+                $$|q_0\rangle = |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+                <p>Code implementation:</p>
+                <code>circuit.x(0)  # Set qubit 0 to |1⟩</code>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Creating the Bell State</h3>
+            <p>We create a Bell state between qubits 1 and 2 using:</p>
+            <ol>
+                <li>Hadamard gate on qubit 1</li>
+                <li>CNOT gate between qubits 1 and 2</li>
+            </ol>
+            
+            <div class="math-block">
+                <p>1. After Hadamard on qubit 1:</p>
+                $$|q_1\rangle = H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+                
+                <p>2. After CNOT between qubits 1 and 2:</p>
+                $$|\beta_{00}\rangle_{12} = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Complete Initial State</h3>
+            <div class="math-block">
+                <p>The total state of the system is:</p>
+                $$|\psi\rangle = |1\rangle_0 \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)_{12}$$
+                $$= \frac{1}{\sqrt{2}}(|100\rangle + |111\rangle)$$
+            </div>
+        </div>
+    </div>
+
+    <!-- Spanish Content -->
+    <div lang="es">
+        <h1>Protocolo de Teleportación Cuántica: Fundamento Matemático</h1>
+
+        <h2>Configuración del Estado Inicial</h2>
+        <div class="math-block">
+            <h3>Componentes del Sistema</h3>
+            <p>El circuito de teleportación cuántica utiliza tres qubits:</p>
+            <ul>
+                <li>Qubit 0: El qubit mensaje (qubit de Alice a teleportar)</li>
+                <li>Qubit 1: Qubit entrelazado de Alice</li>
+                <li>Qubit 2: Qubit entrelazado de Bob</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>Paso 1: Preparación del Qubit Mensaje</h3>
+            <p>En nuestra implementación, preparamos el qubit mensaje en el estado |1⟩:</p>
+            <div class="math-block">
+                <p>Estado inicial del qubit 0:</p>
+                $$|q_0\rangle = |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$$
+                <p>Implementación en código:</p>
+                <code>circuit.x(0)  # Establecer qubit 0 a |1⟩</code>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Paso 2: Creación del Estado Bell</h3>
+            <p>Creamos un estado Bell entre los qubits 1 y 2 usando:</p>
+            <ol>
+                <li>Puerta Hadamard en el qubit 1</li>
+                <li>Puerta CNOT entre los qubits 1 y 2</li>
+            </ol>
+            
+            <div class="math-block">
+                <p>1. Después de Hadamard en el qubit 1:</p>
+                $$|q_1\rangle = H|0\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+                
+                <p>2. Después de CNOT entre qubits 1 y 2:</p>
+                $$|\beta_{00}\rangle_{12} = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)$$
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Estado Inicial Completo</h3>
+            <div class="math-block">
+                <p>El estado total del sistema es:</p>
+                $$|\psi\rangle = |1\rangle_0 \otimes \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)_{12}$$
+                $$= \frac{1}{\sqrt{2}}(|100\rangle + |111\rangle)$$
+            </div>
+        </div>
+    </div>
+</body>
+</html>
