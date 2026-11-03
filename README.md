@@ -134,3 +134,11 @@ We welcome contributions to this project! To contribute:
 - [IBM Qiskit Documentation](https://qiskit.org/documentation/)
 - [Quantum Computing Concepts](https://qiskit.org/textbook/what-is-quantum.html)
 - [IBM Quantum Experience](https://quantum-computing.ibm.com/)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+The implementations are original solutions developed independently for learning purposes.  
+This project uses [Qiskit](https://github.com/Qiskit/qiskit) and [Qiskit Aer](https://github.com/Qiskit/qiskit-aer),
+which are released under the Apache License 2.0 by IBM.
